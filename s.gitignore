@@ -1,0 +1,8 @@
+# Không đẩy thư mục node_modules lên GitHub
+node_modules/
+
+# Không đẩy file cấu hình nhạy cảm lên GitHub
+.env
+
+# Mac system files
+.DS_Store
