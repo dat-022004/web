@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập/Đăng Ký</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="login-container" class="container active">
+        <h2>Đăng Nhập</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="login-gmail">Gmail</label>
+                <input type="email" id="login-gmail" name="gmail" required>
+            </div>
+            <div class="form-group">
+                <label for="login-matkhau">Mật khẩu</label>
+                <input type="password" id="login-matkhau" name="matkhau" required>
+            </div>
+            <button type="submit">Đăng Nhập</button>
+            <div class="switch">
+                Chưa có tài khoản? <a href="#" onclick="showRegister()">Đăng ký ngay</a>
+            </div>
+        </form>
+    </div>
+
+    <div id="register-container" class="container">
+        <h2>mời đăng ký</h2>
+        <form id="register-form">
+            <div class="form-group">
+                <label for="register-gmail">Gmail</label>
+                <input type="email" id="register-gmail" name="gmail" required>
+            </div>
+            <div class="form-group">
+                <label for="register-matkhau">Mật khẩu (ít nhất 6 ký tự)</label>
+                <input type="password" id="register-matkhau" name="matkhau" minlength="6" required>
+            </div>
+            <div class="form-group">
+                <label for="register-vai_tro">Chọn vai trò</label>
+                <select id="register-vai_tro" name="vai_tro" required>
+                    <option value="">Đang tải danh sách vai trò...</option>
+                </select>
+            </div>
+            <button type="submit">Đăng Ký</button>
+            <a href="#" onclick="showLogin()"> Đăng nhập</a>
+        </form>
+    </div>
+
+    <!-- Overlay thông báo giữa màn hình -->
+    <div id="hop-thong-bao-nen" role="dialog" aria-modal="true">
+        <div id="hop-thong-bao">
+            <div id="hop-thong-bao-noi-dung"></div>
+            <button id="hop-thong-bao-dong" type="button">Đóng</button>
+        </div>
+    </div>
+
+    <!-- Remove inline script and load external file -->
+    <script defer src="/login.js"></script>
+</body>
+</html>

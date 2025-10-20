@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trang Sinh Viên</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="app-layout">
+  <nav class="menu">
+    <button class="menu-item" id="menu-profile">Thông tin cá nhân</button>
+    <button class="menu-item">Tìm phòng trọ</button>
+    <button class="menu-item">Xem trọ đã thuê</button>
+    <button class="menu-item">Phản hồi ADMIN</button>
+    <button class="menu-item">Thông báo</button>
+    <button class="menu-item" id="menu-logout" type="button">Đăng xuất</button>
+  </nav>
+
+  <main class="content">
+    <h2 class="page-title">Trang Sinh Viên</h2>
+
+    <section id="panel-profile" class="panel" style="display:none">
+      <form id="frm-profile">
+        <div class="form-group">
+          <label>Gmail</label>
+          <input type="email" id="email" readonly>
+        </div>
+        <div class="form-group">
+          <label>Họ tên</label>
+          <input type="text" id="hoTen" maxlength="100">
+        </div>
+        <div class="form-group">
+          <label>Số điện thoại</label>
+          <input type="tel" id="soDienThoai" maxlength="20">
+        </div>
+        <div class="form-group">
+          <label>Trường</label>
+          <input type="text" id="truong" maxlength="100">
+        </div>
+
+        <button type="submit">Lưu thông tin</button>
+        <div class="switch"><a href="/sinhvien">Quay lại trang chính</a></div>
+      </form>
+    </section>
+  </main>
+
+  <div id="hop-thong-bao-nen">
+    <div id="hop-thong-bao">
+      <div id="hop-thong-bao-noi-dung"></div>
+      <button id="hop-thong-bao-dong">Đóng</button>
+    </div>
+  </div>
+
+  <script defer src="/sinhvien.js"></script>
+</body>
+</html>

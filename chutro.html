@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trang Chủ Trọ</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="app-layout">
+  <nav class="menu">
+    <button class="menu-item" id="menu-profile">Thông tin cá nhân</button>
+    <button class="menu-item" id="menu-verify">Xác nhận chủ trọ</button>
+    <button class="menu-item" id="menu-post">Đăng bài</button>
+    <button class="menu-item" id="menu-manage" type="button">Quản lý phòng</button>
+    <button class="menu-item">Phản hồi ADMIN</button>
+    <button class="menu-item">Thông báo</button>
+    <button class="menu-item" id="menu-logout" type="button">Đăng xuất</button>
+  </nav>
+
+  <main class="content">
+    <h2 class="page-title">Trang Chủ Trọ</h2>
+
+    <section id="panel-profile" class="panel" style="display:none">
+      <form id="frm-profile">
+        <div class="form-group">
+          <label>Gmail</label>
+          <input type="email" id="email" readonly>
+        </div>
+        <div class="form-group">
+          <label>Họ tên</label>
+          <input type="text" id="hoTen" maxlength="100">
+        </div>
+        <div class="form-group">
+          <label>Số điện thoại</label>
+          <input type="tel" id="soDienThoai" maxlength="20">
+        </div>
+        <div class="form-group">
+          <label>Địa chỉ liên hệ</label>
+          <input type="text" id="diaChiLienHe" maxlength="255">
+        </div>
+
+        <button type="submit">Lưu thông tin</button>
+        <div class="switch"><a href="/chutro">Quay lại trang chính</a></div>
+      </form>
+    </section>
+
+    <section id="panel-verify" class="panel" style="display:none">
+      <h3>Xác nhận chủ trọ</h3>
+      <p id="verify-status-text">Trạng thái: đang kiểm tra...</p>
+      <form id="frm-verify">
+        <div class="form-group">
+          <label>Loại giấy tờ</label>
+          <select id="loaiGiayTo" required>
+            <option value="GiayPhepKinhDoanh">Giấy phép kinh doanh</option>
+            <option value="CMND/CCCD+SoHoKhau">CMND/CCCD + Sổ hộ khẩu</option>
+            <option value="GiayToKhac">Giấy tờ tương đương</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tải lên minh chứng (ảnh)</label>
+          <input type="file" id="fileMinhChung" accept="image/jpeg,image/png" required>
+          <img id="verify-preview" alt="Xem trước minh chứng" style="display:none;max-width:320px;margin-top:8px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.15)" />
+        </div>
+        <button type="submit">Gửi xác thực</button>
+      </form>
+      <small>Lưu ý: Đây là quy trình bắt buộc trước khi đăng tin.</small>
+    </section>
+
+    <section id="panel-post" class="panel" style="display:none">
+      <h3>Đăng bài</h3>
+      <div id="post-guard" style="color:#b91c1c; font-weight:600; margin-bottom:8px;">Bạn chưa được xác thực. Vui lòng hoàn tất xác thực để đăng tin.</div>
+
+      <!-- New: tạo phòng mới (TrangThai mặc định 0 - phòng trống) -->
+      <form id="frm-room">
+        <h4>Tạo phòng mới</h4>
+        <div class="form-group"><label>Tiêu đề</label><input id="room-title" maxlength="150" required></div>
+        <div class="form-group"><label>Mô tả</label><textarea id="room-desc" rows="3"></textarea></div>
+        <div class="form-group"><label>Địa chỉ</label><input id="room-diachi" maxlength="255" required></div>
+        <div class="form-row" style="display:flex;gap:10px">
+          <div class="form-group" style="flex:1"><label>Phường/Xã</label><input id="room-phuongxa" maxlength="100"></div>
+          <div class="form-group" style="flex:1"><label>Quận/Huyện</label><input id="room-quanhuyen" maxlength="100"></div>
+          <div class="form-group" style="flex:1"><label>Thành phố</label><input id="room-thanhpho" maxlength="100" value="Thai Nguyen"></div>
+        </div>
+        <div class="form-row" style="display:flex;gap:10px">
+          <div class="form-group" style="flex:1"><label>Diện tích (m²)</label><input type="number" step="0.01" id="room-dientich"></div>
+          <div class="form-group" style="flex:1"><label>Giá cơ bản</label><input type="number" step="0.01" id="room-gia" required></div>
+          <div class="form-group" style="flex:1"><label>Số người tối đa</label><input type="number" id="room-songuoitoida"></div>
+        </div>
+        <div class="form-group"><label>Link Google Map</label><input id="room-mapurl" placeholder="Dán liên kết Google Maps"></div>
+        <div class="form-group">
+          <label>Tiện ích</label>
+          <div id="tienich-list" style="display:flex;flex-wrap:wrap;gap:10px"></div>
+        </div>
+        <button type="submit">Tạo phòng</button>
+      </form>
+
+      <hr style="margin:16px 0">
+
+      <!-- New: chọn phòng để tải ảnh -->
+      <div class="form-group">
+        <label>Phòng của bạn</label>
+        <select id="post-room-select"></select>
+      </div>
+
+      <!-- Upload nhiều ảnh cho phòng -->
+      <form id="frm-post">
+        <div class="form-group">
+          <label>PhongId</label>
+          <input type="number" id="post-phongId" placeholder="Nhập/đã chọn PhongId" required>
+        </div>
+        <div class="form-group">
+          <label>Ảnh phòng (có thể chọn nhiều)</label>
+          <input type="file" id="post-files" accept="image/jpeg,image/png" multiple required>
+        </div>
+        <button type="submit">Tải ảnh lên</button>
+      </form>
+
+      <div style="margin-top:12px">
+        <h4>Ảnh đã đăng</h4>
+        <div id="post-gallery" style="display:flex;flex-wrap:wrap;gap:10px"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="hop-thong-bao-nen" style="display:none">
+    <div id="hop-thong-bao">
+      <div id="hop-thong-bao-noi-dung"></div>
+      <button id="hop-thong-bao-dong">Đóng</button>
+    </div>
+  </div>
+  <script defer src="/chutro.js"></script>
+</body>
+</html>

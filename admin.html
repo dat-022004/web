@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trang Quản Trị</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="app-layout">
+  <nav class="menu">
+    <button class="menu-item" id="menu-dashboard">Tổng quan</button>
+    <button class="menu-item" id="menu-accounts">Tài khoản</button>
+    <button class="menu-item" id="menu-verify">Duyệt chủ trọ</button>
+    <button class="menu-item" id="menu-rooms">Quản lý phòng</button>
+    <button class="menu-item" id="menu-noti">Thông báo</button>
+    <button class="menu-item" id="menu-logout" type="button">Đăng xuất</button>
+  </nav>
+
+  <main class="content">
+    <h2 class="page-title">Bảng điều khiển Admin</h2>
+
+    <section id="panel-dashboard" class="panel">
+      <p>Xin chào, <strong id="admin-email">admin@gmail.com</strong>.</p>
+      <p>Chọn chức năng ở thanh bên trái để bắt đầu.</p>
+    </section>
+
+    <section id="panel-verify" class="panel" style="display:none">
+      <h3>Duyệt xác thực chủ trọ</h3>
+      <div class="form-group">
+        <label>Trạng thái</label>
+        <select id="verify-status">
+          <option value="0" selected>Chờ duyệt</option>
+          <option value="1">Đã duyệt</option>
+          <option value="2">Đã từ chối</option>
+        </select>
+      </div>
+      <table id="verify-table" class="table table-compact table-striped">
+        <colgroup>
+          <col style="width:72px">
+          <col style="width:220px">
+          <col style="width:200px">
+          <col style="width:180px">
+          <col style="width:120px">
+          <col style="width:110px">
+          <col style="width:180px">
+          <col style="width:140px">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>ID</th><th>Email</th><th>Họ tên</th><th>Giấy tờ</th>
+            <th>Minh chứng</th><th>Đã xác thực</th><th>Ngày xác thực</th><th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="panel-accounts" class="panel" style="display:none">
+      <h3>Quản lý tài khoản</h3>
+      <div class="form-group">
+        <label>Lọc vai trò</label>
+        <select id="acc-role">
+          <option value="all" selected>Tất cả</option>
+          <option value="student">Sinh viên</option>
+          <option value="landlord">Chủ trọ</option>
+        </select>
+      </div>
+      <table id="accounts-table" class="table table-compact table-striped">
+        <colgroup>
+          <col style="width:72px">
+          <col style="width:220px">
+          <col style="width:140px">
+          <col style="width:120px">
+          <col> <!-- info -->
+          <col style="width:140px">
+        </colgroup>
+        <thead>
+          <tr><th>ID</th><th>Email</th><th>Vai trò</th><th>Trạng thái</th><th>Thông tin</th><th>Thao tác</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="panel-noti" class="panel" style="display:none">
+      <h3>Nhận phản hồi</h3>
+      <div class="form-group">
+        <label>Loại</label>
+        <select id="fb-type">
+          <option value="all" selected>Tất cả</option>
+          <option value="gopy">Góp ý</option>
+          <option value="suco">Sự cố</option>
+          <option value="khieunai">Khiếu nại</option>
+          <option value="tocao">Tố cáo</option>
+        </select>
+      </div>
+      <table id="feedback-table" class="table table-compact table-striped">
+        <colgroup>
+          <col style="width:80px">
+          <col style="width:240px">
+          <col style="width:120px">
+          <col style="width:260px">
+          <col> <!-- content -->
+        </colgroup>
+        <thead>
+          <tr><th>ID</th><th>Email</th><th>Loại</th><th>Tiêu đề</th><th>Nội dung</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <div id="hop-thong-bao-nen" style="display:none">
+    <div id="hop-thong-bao">
+      <div id="hop-thong-bao-noi-dung"></div>
+      <button id="hop-thong-bao-dong">Đóng</button>
+    </div>
+  </div>
+
+  <script defer src="/admin.js"></script>
+</body>
+</html>
